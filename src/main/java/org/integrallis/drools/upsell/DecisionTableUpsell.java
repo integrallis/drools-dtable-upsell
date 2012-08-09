@@ -28,7 +28,7 @@ public class DecisionTableUpsell {
             StatefulKnowledgeSession ksession = kbase.newStatefulKnowledgeSession();
             KnowledgeRuntimeLogger logger = KnowledgeRuntimeLoggerFactory.newFileLogger(ksession, "test");
             // go !
-            Customer customer = new Customer("Brian Sam-Bodden", 1300.00, DateUtil.getDate("2005-06-21"));
+            Customer customer = new Customer("Brian Sam-Bodden", 1300.00, DateUtil.getDate("2007-06-21"));
             ksession.insert(customer);
             ksession.fireAllRules();
             logger.close();
