@@ -15,6 +15,7 @@ import org.drools.logger.KnowledgeRuntimeLoggerFactory;
 import org.drools.runtime.StatefulKnowledgeSession;
 import org.integrallis.drools.upsell.domain.Customer;
 import org.integrallis.drools.upsell.domain.DateUtil;
+import org.integrallis.drools.upsell.domain.Product;
 
 /**
  * This is a sample class to launch a decision table.
@@ -29,10 +30,14 @@ public class DecisionTableUpsell {
             KnowledgeRuntimeLogger logger = KnowledgeRuntimeLoggerFactory.newFileLogger(ksession, "test");
             // go !
             Customer customer = new Customer("Brian Sam-Bodden", 1300.00, DateUtil.getDate("2007-06-21"));
+            customer.addProducts(Product.CHECKING_ACCOUNT);
             ksession.insert(customer);
             ksession.fireAllRules();
             logger.close();
             System.out.println(customer);
+            for (Product product : customer.getRecommended()) {
+				System.out.println("Recommended Product ===> " + product);
+			}
         } catch (Throwable t) {
             t.printStackTrace();
         }

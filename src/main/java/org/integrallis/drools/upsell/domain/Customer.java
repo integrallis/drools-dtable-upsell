@@ -2,13 +2,16 @@ package org.integrallis.drools.upsell.domain;
 
 import java.util.Arrays;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Customer {
 	public enum Profile { NEW, BRONZE, SILVER, GOLD, PLATINUM }
 	
 	private Profile profile;
-	private List<Product> products;
+	private Set<Product> products = new HashSet<Product>();
+	private Set<Product> recommended = new HashSet<Product>();
 	private Double combinedBalance = 0.0;
 	private Date customerSince;
 	private String name;
@@ -27,16 +30,24 @@ public class Customer {
 		return profile;
 	}
 
-	public void setProducts(List<Product> products) {
+	public void setProducts(Set<Product> products) {
 		this.products = products;
 	}
 
-	public List<Product> getProducts() {
+	public Set<Product> getProducts() {
 		return products;
 	}
 	
 	public void addProducts(Product... products) {
         this.products.addAll(Arrays.asList(products));
+	}
+	
+	public boolean hasAllOfTheseProducts(Product... products) {
+		return this.products.containsAll(Arrays.asList(products));
+	}
+	
+	public boolean hasNoneOfTheseProducts(Product... products) {
+		return !hasAllOfTheseProducts(products);
 	}
 
 	public void setCombinedBalance(Double combinedBalance) {
@@ -66,6 +77,18 @@ public class Customer {
 	@Override
 	public String toString() {
 		return name + " " + combinedBalance + " " + profile; 
+	}
+
+	public Set<Product> getRecommended() {
+		return recommended;
+	}
+
+	public void setRecommended(Set<Product> recommended) {
+		this.recommended = recommended;
+	}
+	
+	public void addRecommendedProducts(Product... products) {
+        this.recommended.addAll(Arrays.asList(products));
 	}
 	
 }
