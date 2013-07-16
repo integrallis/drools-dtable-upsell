@@ -6,5 +6,6 @@
 *.ear
 
 .classpath
-.project
 .settings/*
+/bin
+/test.log
