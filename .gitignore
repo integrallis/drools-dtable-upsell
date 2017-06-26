@@ -9,3 +9,4 @@
 .settings/*
 /bin
 /test.log
+/target/
