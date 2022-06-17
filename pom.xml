@@ -9,7 +9,7 @@
 	<description>Drools Decision Table Example</description>
 
 	<properties>
-		<runtime.version>7.0.0.Final</runtime.version>
+		<runtime.version>7.60.0.Final</runtime.version>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 	</properties>
